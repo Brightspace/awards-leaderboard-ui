@@ -18,6 +18,7 @@ import { bodyCompactStyles, bodySmallStyles  } from '@brightspace-ui/core/compon
 import { css, html, LitElement, unsafeCSS } from 'lit-element/lit-element.js';
 import { PanelPadding, TopStyleLimit } from '../constants/constants';
 import { BaseMixin } from '../mixins/base-mixin.js';
+import { classMap } from 'lit-html/directives/class-map.js';
 import { LeaderboardRoutes } from '../helpers/leaderboardRoutes';
 import { ListItemRoleMixin } from '@brightspace-ui/core/components/list/list-item-role-mixin.js';
 
@@ -47,28 +48,37 @@ class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 			bodySmallStyles,
 			css`
 			:host {
+				background-color: white;
+				border-bottom: 1px solid var(--d2l-color-mica);
+				border-top: 1px solid var(--d2l-color-mica);
 				display: block;
+				margin-top: -1px;
 			}
+			:host(:not([mobile])),
+			d2l-labs-accordion-collapse .d2l-award-row {
+				padding: 0.55rem 0;
+			}
+
 			:host([my-award]) {
 				background-color: var(--d2l-color-celestine-plus-2);
 				bottom: 0;
 				position: -webkit-sticky; /* Safari */
 				position: sticky;
 			}
-			.awardRow {
+			.d2l-award-row {
 				align-items: center;
 				display: flex;
 				flex-direction: row;
 			}
-			.profileImage {
+			.d2l-profile-image {
 				border-radius: 5px;
 				margin-left: 12px;
 			}
-			:host([dir="rtl"]) .profileImage {
+			:host([dir="rtl"]) .d2l-profile-image {
 				margin-right: 12px;
 				margin-left: 0;
 			}
-			.awardRank {
+			.d2l-award-rank {
 				align-items: center;
 				background-color: #E3E9F1;
 				border: 1px solid #E3E9F1;
@@ -82,63 +92,63 @@ class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 				-moz-border-radius:50%;
 				-webkit-border-radius:50%;
 			}
-			.ranking{
+			.d2l-ranking {
 				width: 58px;
 			}
-			:host([dir="rtl"]) .awardRank {
+			:host([dir="rtl"]) .d2l-award-rank {
 				margin-left: 0px;
 				margin-right: 17px;
 			}
-			.awardRank[topRank] {
+			.d2l-award-rank.d2l-top-rank {
 				background-color: white;
 				border: 1px solid var(--d2l-color-ferrite);
 			}
-			.awardRow[myAward] .awardRank[topRank],
-			.awardRow[myAward] .awardRank {
+			:host([my-award]) .d2l-award-row .d2l-award-rank.d2l-top-rank,
+			:host([my-award]) .d2l-award-row .d2l-award-rank {
 				border: 1px solid var(--d2l-color-celestine);
 			}
-			:host([full]) .creditCount {
+			:host([full]) .d2l-credit-count {
 				align-items: center;
 				display:flex;
 			}
-			.creditCount {
+			.d2l-credit-count {
 				display: flex;
 				flex-direction: column;
 				overflow: hidden;
 				margin-left: 10px;
 			}
-			:host([dir="rtl"]) .creditCount {
+			:host([dir="rtl"]) .d2l-credit-count {
 				margin-left: 0px;
 				margin-right: 10px;
 			}
-			:host([full]) .creditCount {
+			:host([full]) .d2l-credit-count {
 				align-items: center;
 				display: flex;
 				flex-direction: row;
 				width: 35%;
 			}
-			.displayName {
+			.d2l-display-name {
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
-			:host([full]) .displayName {
+			:host([full]) .d2l-display-name {
 				margin-right: 10px;
 				width: 70%;
 			}
-			:host([full][dir="rtl"]) .displayName {
+			:host([full][dir="rtl"]) .d2l-display-name {
 				margin-left: 10px;
 				margin-right: 0;
 			}
-			.displayNumber {
+			.d2l-display-number {
 				margin-left: 0;
 				margin-right: 0;
 			}
-			:host([full]) .displayNumber {
+			:host([full]) .d2l-display-number {
 				align-items: center;
 				display: flex;
 				width: 30%;
 			}
-			.panel {
+			.d2l-panel {
 				background-color: var(--d2l-color-sylvite);
 				border-top: 1px solid var(--d2l-color-mica);
 				margin-bottom: -11px;
@@ -147,16 +157,16 @@ class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 				padding-left: ${unsafeCSS(PanelPadding)}px;
 				padding-top: 12px;
 			}
-			:host([dir="rtl"]) .panel {
+			:host([dir="rtl"]) .d2l-panel {
 				padding-left: 0px;
 				padding-right: ${unsafeCSS(PanelPadding)}px;
 			}
-			.side {
+			aside {
 				flex-shrink: 0;
 				margin-left: auto;
 				margin-right: 25px;
 			}
-			:host([dir="rtl"]) .side {
+			:host([dir="rtl"]) aside {
 				margin-left: 25px;
 				margin-right: auto;
 			}
@@ -165,7 +175,6 @@ class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 	}
 
 	render() {
-		console.log(this.userData);
 		if (this.userData === undefined) {
 			return;
 		}
@@ -175,34 +184,42 @@ class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 
 		const isDisabled = this.userData.TotalAwardCount === 0 ? true : false;
 
-		console.log(this.userData);
-		if (this.mobile) {
-			return html`
+		const rankClasses = {
+			'd2l-award-rank': true,
+			'd2l-body-standard': this.full,
+			'd2l-body-compact': !this.full,
+			'd2l-top-rank': this.userData.Rank <= TopStyleLimit
+		};
+
+		const renderAwardRowInfo = () => html`
+			<div class="d2l-ranking">
+				<div
+					class="${classMap(rankClasses)}"
+					role="img"
+					aria-label="${this.localize('rankingAria', { rank:`${this.userData.Rank}` })}">
+					${this.userData.Rank}
+				</div>
+			</div>
+			<d2l-profile-image
+				class="d2l-profile-image"
+				href="${LeaderboardRoutes.ProfileImage(this.userData.UserId)}"
+				medium
+				token="token"
+				aria-hidden="true">
+			</d2l-profile-image>
+			<div class="d2l-credit-count">
+				<div class="${mainFontStyle} d2l-display-name" @mouseenter="${this._handleMouseEnter}">${this.userData.DisplayName}</div>
+				<div class="${secondFontStyle} d2l-display-number">${this._getDisplayNumber()}</div>
+			</div>
+		`;
+
+		return this.mobile ? html`
 				<d2l-labs-accordion>
 					<d2l-labs-accordion-collapse flex icon-has-padding ?disabled="${isDisabled}">
-						<div class="awardRow" ?myAward="${this.myAward}" slot="header">
-							<div class="ranking">
-								<div
-									class="awardRank ${mainFontStyle}"
-									role="img"
-									?topRank="${this.userData.Rank <= TopStyleLimit}"
-									aria-label="${this.localize('rankingAria', { rank:`${this.userData.Rank}` })}">
-									${this.userData.Rank}
-								</div>
-							</div>
-							<d2l-profile-image
-								class="profileImage"
-								href="${LeaderboardRoutes.ProfileImage(this.userData.UserId)}"
-								medium
-								token="token"
-								aria-hidden="true">
-							</d2l-profile-image>
-							<div class='creditCount'>
-								<div class='${mainFontStyle} displayName' @mouseenter=${this._handleMouseEnter}>${this.userData.DisplayName}</div>
-								<div class='${secondFontStyle} displayNumber'>${this._getDisplayNumber()}</div>
-							</div>
+						<div class="d2l-award-row" slot="header">
+							${renderAwardRowInfo()}
 						</div>
-						<div class="panel">
+						<div class="d2l-panel">
 							<span role="list">
 								${this._getAwardsDisplay()}
 							</span>
@@ -210,36 +227,15 @@ class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 						</div>
 					</d2l-labs-accordion-collapse>
 				</d2l-labs-accordion>
-			`;
-		}
-		return html`
-			<div class="awardRow" ?myAward="${this.myAward}">
-				<div class="ranking">
-					<div
-						class="awardRank ${mainFontStyle}"
-						role="img"
-						?topRank="${this.userData.Rank <= TopStyleLimit}"
-						aria-label="${this.localize('rankingAria', { rank:`${this.userData.Rank}` })}">
-						${this.userData.Rank}
-					</div>
-				</div>
-				<d2l-profile-image
-					class="profileImage"
-					href="${LeaderboardRoutes.ProfileImage(this.userData.UserId)}"
-					medium
-					token="token"
-					aria-hidden="true">
-				</d2l-profile-image>
-				<div class='creditCount'>
-					<div class='${mainFontStyle} displayName' @mouseenter=${this._handleMouseEnter}>${this.userData.DisplayName}</div>
-					<div class='${secondFontStyle} displayNumber'>${this._getDisplayNumber()}</div>
-				</div>
-				<div class="side">
+			` : html`
+			<div class="d2l-award-row">
+				${renderAwardRowInfo()}
+				<aside>
 					<span role="list">
 						${this._getAwardsDisplay()}
 					</span>
 					${this._getExtraAwardsDisplay()}
-				</div>
+				</aside>
 			</div>
 		`;
 	}

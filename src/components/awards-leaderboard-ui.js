@@ -63,18 +63,10 @@ class App extends BaseMixin(LitElement) {
 				overflow: hidden;
 				overflow-y: auto;
 			}
-			d2l-list-item-content {
-				width: 100%;
-			}
 			d2l-resize-aware {
 				width: 100%;
 			}
-			.myAwardItem {
-				background-color: var(--d2l-color-celestine-plus-2);
-				bottom: 0;
-				position: -webkit-sticky; /* Safari */
-				position: sticky;
-			}
+
 			@keyframes loadingPulse {
 				0% { background-color: var(--d2l-color-sylvite); }
 				50% { background-color: var(--d2l-color-regolith); }
@@ -213,16 +205,14 @@ class App extends BaseMixin(LitElement) {
 			isMyAward = true;
 		}
 		return html`
-			<d2l-list-item class="${ isMyAward ? 'myAwardItem' : '' }">
-				<leaderboard-row
-					?myAward=${isMyAward}
-					.userData=${item}
-					?sortByCreditsConfig=${this.sortByCreditsConfig}
-					?mobile="${this.mobile}"
-					?full="${this.full}"
-					maxBadges="${this.maxBadges}">
-				</leaderboard-row>
-			</d2l-list-item>
+			<d2l-leaderboard-row
+				?my-award="${isMyAward}"
+				.userData="${item}"
+				?sort-by-credits-config="${this.sortByCreditsConfig}"
+				?mobile="${this.mobile}"
+				?full="${this.full}"
+				max-badges="${this.maxBadges}">
+			</d2l-leaderboard-row>
 		`;
 	}
 

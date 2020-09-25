@@ -19,14 +19,15 @@ import { css, html, LitElement, unsafeCSS } from 'lit-element/lit-element.js';
 import { PanelPadding, TopStyleLimit } from '../constants/constants';
 import { BaseMixin } from '../mixins/base-mixin.js';
 import { LeaderboardRoutes } from '../helpers/leaderboardRoutes';
+import { ListItemRoleMixin } from '@brightspace-ui/core/components/list/list-item-role-mixin.js';
 
-class LeaderboardRow extends BaseMixin(LitElement) {
+class LeaderboardRow extends BaseMixin(ListItemRoleMixin(LitElement)) {
 
 	static get properties() {
 		return {
-			userData: { type: Object },
-			myAward: { type: Boolean },
-			sortByCreditsConfig: { type: Boolean },
+			userData: { type: Object, attribute: 'user-data' },
+			myAward: { type: Boolean, attribute: 'my-award' },
+			sortByCreditsConfig: { type: Boolean, attribute: 'sort-by-credits-config' },
 			mobile: {
 				type: Boolean,
 				value: false
@@ -35,7 +36,7 @@ class LeaderboardRow extends BaseMixin(LitElement) {
 				type: Boolean,
 				value: false
 			},
-			maxBadges: { type: Number },
+			maxBadges: { type: Number, attribute: 'max-badges' },
 			_displayedBadges: { type: Number }
 		};
 	}
@@ -46,7 +47,13 @@ class LeaderboardRow extends BaseMixin(LitElement) {
 			bodySmallStyles,
 			css`
 			:host {
-				width: 100%;
+				display: block;
+			}
+			:host([my-award]) {
+				background-color: var(--d2l-color-celestine-plus-2);
+				bottom: 0;
+				position: -webkit-sticky; /* Safari */
+				position: sticky;
 			}
 			.awardRow {
 				align-items: center;
@@ -158,6 +165,7 @@ class LeaderboardRow extends BaseMixin(LitElement) {
 	}
 
 	render() {
+		console.log(this.userData);
 		if (this.userData === undefined) {
 			return;
 		}
@@ -167,11 +175,12 @@ class LeaderboardRow extends BaseMixin(LitElement) {
 
 		const isDisabled = this.userData.TotalAwardCount === 0 ? true : false;
 
+		console.log(this.userData);
 		if (this.mobile) {
 			return html`
 				<d2l-labs-accordion>
 					<d2l-labs-accordion-collapse flex icon-has-padding ?disabled="${isDisabled}">
-						<div class='awardRow' ?myAward="${this.myAward}" slot="header">
+						<div class="awardRow" ?myAward="${this.myAward}" slot="header">
 							<div class="ranking">
 								<div
 									class="awardRank ${mainFontStyle}"
@@ -204,7 +213,7 @@ class LeaderboardRow extends BaseMixin(LitElement) {
 			`;
 		}
 		return html`
-			<div class='awardRow' ?myAward="${this.myAward}">
+			<div class="awardRow" ?myAward="${this.myAward}">
 				<div class="ranking">
 					<div
 						class="awardRank ${mainFontStyle}"
@@ -324,4 +333,4 @@ class LeaderboardRow extends BaseMixin(LitElement) {
 	}
 }
 
-window.customElements.define('leaderboard-row', LeaderboardRow);
+window.customElements.define('d2l-leaderboard-row', LeaderboardRow);

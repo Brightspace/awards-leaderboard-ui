@@ -44,7 +44,7 @@
         </template>
     </test-fixture>
     <script type="module">
-        
+
         describe('leaderboard-row', () => {
             let leaderboardRow;
             describe('basic', () => {
@@ -79,7 +79,7 @@
                     const totalAwards = 20;
                     leaderboardRow.maxBadges = 8;
                     leaderboardRow.userData = {
-                        "UserId": 1234, 
+                        "UserId": 1234,
                         "TotalAwardCount": totalAwards,
                         "IssuedAwards": { "Objects": [ { "AwardId": 1 } ] }
                     };
@@ -89,7 +89,7 @@
                 it('should not have extra count for less than limit', () => {
                     const totalAwards = 1;
                     leaderboardRow.userData = {
-                        "UserId": 1234, 
+                        "UserId": 1234,
                         "TotalAwardCount": totalAwards,
                         "IssuedAwards": { "Objects": [ { "AwardId": 1 } ] }
                     };
@@ -99,7 +99,7 @@
                 it('should return 0 when user has no issued awards', () => {
                     const totalAwards = 1;
                     leaderboardRow.userData = {
-                        "UserId": 1234, 
+                        "UserId": 1234,
                         "TotalAwardCount": totalAwards
                     };
                     const ret = leaderboardRow._getExtraAwardCount();

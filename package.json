@@ -9,10 +9,9 @@
     "lint": "eslint --ext .json,.js,.html .",
     "format": "npm run lint -- --fix .",
     "test": "npm run lint && npm run test:local",
-    "test:local": "polymer test --skip-plugin sauce",
-    "test:sauce": "polymer test --skip-plugin local",
-    "test:license": "license-checker-ci",
-    "test:travis": "polymer test --config-file wct.conf-travis.json"
+    "test:local": "karma start --coverage",
+    "test:sauce": "karma start karma.sauce.conf.js --coverage",
+    "test:license": "license-checker-ci"
   },
   "repository": {
     "type": "git",
@@ -38,11 +37,11 @@
     "lit-html": "^1"
   },
   "devDependencies": {
-    "@polymer/test-fixture": "^4",
+    "@open-wc/testing": "^2.5.32",
+    "@open-wc/testing-karma": "^4.0.9",
     "babel-eslint": "^10",
-    "chai": "^4.2.0",
     "d2l-license-checker": "^3",
-    "del": "^6",
+    "deepmerge": "^4.2.2",
     "eslint": "^7",
     "eslint-config-brightspace": "^0.11.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
@@ -53,12 +52,7 @@
     "eslint-plugin-sort-class-members": "^1.8.0",
     "frau-ci": "^1",
     "http-server": "^0.12.3",
-    "lint": "^0.7.0",
-    "mocha": "^8",
     "polymer-cli": "^1",
-    "polyserve": "^0.27.15",
-    "puppeteer": "^5",
-    "wct-mocha": "^1.1.0",
-    "web-component-tester": "^6.9.2"
+    "polyserve": "^0.27.15"
   }
 }

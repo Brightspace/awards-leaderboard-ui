@@ -15,8 +15,5 @@ if [ $TRAVIS_PULL_REQUEST != false ] && [ $TRAVIS_SECURE_ENV_VARS == true ]; the
     npm run test:sauce || travis_terminate 1;
 else
     echo "Not a pull request and/or no secure environment variables, running headless tests...";
-    npm run test:travis || travis_terminate 1;
+    npm run test:local || travis_terminate 1;
 fi
-
-echo 'Build'
-npm run build

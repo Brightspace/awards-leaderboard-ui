@@ -45,7 +45,7 @@ There are tests with this repo that run within CI. To test them locally within a
 browser, run
 
 ```
-polymer test --skip-plugin sauce -p
+npm test
 ```
 
 ## Versioning

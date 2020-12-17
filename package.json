@@ -1,33 +1,22 @@
 {
   "name": "d2l-awards-leaderboard-ui",
-  "description": "Awards Leaderboard UI",
   "version": "1.1.2",
+  "description": "Awards Leaderboard UI",
+  "repository": "https://github.com/Brightspace/awards-leaderboard-ui.git",
   "scripts": {
-    "start:prod": "npm run build && npx http-server ./build/prod -p 3000",
-    "start:dev": "npm run build && npx polymer serve -p 3000",
-    "build": "polymer build",
     "lint": "eslint --ext .json,.js,.html .",
-    "format": "npm run lint -- --fix .",
+    "format": "npm run lint -- --fix",
     "test": "run-s -s lint test:license test:local",
     "test:local": "karma start --coverage",
     "test:sauce": "karma start karma.sauce.conf.js --coverage",
-    "test:license": "license-checker-ci"
+    "test:license": "license-checker-ci",
+    "start": "es-dev-server --app-index demo/index.html --node-resolve --dedupe --open --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Brightspace/awards-leaderboard-ui.git"
-  },
-  "author": "D2L",
+  "author": "D2L Corporation",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/Brightspace/awards-leaderboard-ui/issues"
-  },
-  "homepage": "https://github.com/Brightspace/awards-leaderboard-ui#readme",
   "dependencies": {
     "@brightspace-ui-labs/accordion": "^2",
     "@brightspace-ui/core": "^1",
-    "@polymer/polymer": "^3",
-    "@webcomponents/webcomponentsjs": "^2",
     "d2l-html-editor": "github:Brightspace/d2l-html-editor#semver:^2",
     "d2l-inputs": "github:BrightspaceUI/inputs#semver:^2",
     "d2l-loading-spinner": "github:BrightspaceUI/loading-spinner#semver:^7",
@@ -37,24 +26,23 @@
     "lit-html": "^1"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.5.32",
-    "@open-wc/testing-karma": "^4.0.9",
+    "@open-wc/testing": "^2",
+    "@open-wc/testing-karma": "^4",
+    "@webcomponents/webcomponentsjs": "^2",
     "babel-eslint": "^10",
     "d2l-license-checker": "^3",
-    "deepmerge": "^4.2.2",
+    "deepmerge": "^4",
+    "es-dev-server": "^1",
     "eslint": "^7",
     "eslint-config-brightspace": "^0.11.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-html": "^6",
     "eslint-plugin-json": "^2",
-    "eslint-plugin-lit": "^1.2.4",
+    "eslint-plugin-lit": "^1",
     "eslint-plugin-mocha": "^8",
-    "eslint-plugin-sort-class-members": "^1.8.0",
+    "eslint-plugin-sort-class-members": "^1",
     "frau-ci": "^1",
-    "http-server": "^0.12.3",
-    "karma-sauce-launcher": "^4.3.4",
-    "npm-run-all": "^4.1.5",
-    "polymer-cli": "^1",
-    "polyserve": "^0.27.15"
+    "karma-sauce-launcher": "^4",
+    "npm-run-all": "^4.1.5"
   }
 }

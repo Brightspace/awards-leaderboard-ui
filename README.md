@@ -32,10 +32,8 @@ This also makes Valence API calls to Awards tool
 
 There is a demo page. To serve it, run the following commands:
 * `npm i`
-* `polymer serve`
-This outputs a url, use that and point it to the demo/index page.
-It should return  a url like this http://127.0.0.1:8081/components/d2l-awards-leaderboard-ui/
-Viewing the demo page would be at http://127.0.0.1:8081/components/d2l-awards-leaderboard-ui/demo/index.html
+* `npm start`
+This will auto open a demo page for viewing and will respond to changes.
 
 This comes with sample data and a sample full view, medium view and mobile view as there are distinctions between them.
 

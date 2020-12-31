@@ -80,7 +80,7 @@ class AwardIssued extends BaseMixin(LitElement) {
 	}
 
 	_awardClick() {
-		const event = new CustomEvent('award-issued-dialog', {
+		const event = new CustomEvent('d2l-award-issued-dialog', {
 			bubbles: true,
 			composed: true,
 			detail: {
@@ -98,4 +98,4 @@ class AwardIssued extends BaseMixin(LitElement) {
 	}
 }
 
-window.customElements.define('award-issued', AwardIssued);
+window.customElements.define('d2l-award-issued', AwardIssued);

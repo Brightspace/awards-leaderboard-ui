@@ -7,7 +7,7 @@ describe('leaderboard-row', () => {
 	describe('basic', () => {
 		beforeEach(async () => {
 			leaderboardRow = await fixture(html`
-                <leaderboard-row id="leaderboardRow"></leaderboard-row>
+                <d2l-leaderboard-row id="leaderboardRow"></d2l-leaderboard-row>
             `);
 		});
 

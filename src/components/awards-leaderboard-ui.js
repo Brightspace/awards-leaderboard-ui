@@ -37,7 +37,7 @@ class App extends BaseMixin(LitElement) {
 		return {
 			orgUnitId: { type: Number },
 			userId: { type: Number },
-			sortByCreditsConfig: { type: Boolean },
+			sortByCreditsConfig: { type: Boolean, attribute: 'sort-by-credits-config' },
 			doneLoading: { type: Boolean },
 			mobile: {
 				type: Boolean,
@@ -69,7 +69,7 @@ class App extends BaseMixin(LitElement) {
 			d2l-resize-aware {
 				width: 100%;
 			}
-			.myAwardItem {
+			.d2l-my-award-item {
 				background-color: var(--d2l-color-celestine-plus-2);
 				bottom: 0;
 				position: -webkit-sticky; /* Safari */
@@ -81,13 +81,13 @@ class App extends BaseMixin(LitElement) {
 				75% { background-color: var(--d2l-color-sylvite); }
 				100% { background-color: var(--d2l-color-sylvite); }
 			}
-			.skeleton-awardRow{
+			.d2l-skeleton-award-row{
 				align-items: center;
 				display: flex;
 				flex-direction: row;
 				padding: 3px;
 			}
-			.skeleton-awardRank{
+			.d2l-skeleton-award-rank{
 				animation: loadingPulse 1.8s linear infinite;
 				border-radius: 15px;
 				height: 21px;
@@ -97,46 +97,46 @@ class App extends BaseMixin(LitElement) {
 				-moz-border-radius:50%;
 				-webkit-border-radius:50%;
 			}
-			.skeleton-profilePic {
+			.d2l-skeleton-profile-pic {
 				animation: loadingPulse 1.8s linear infinite;
 				border-radius: 6px;
 				height: 42px;
 				margin-left: 7px;
 				width: 42px;
 			}
-			:host([dir="rtl"]) .skeleton-profilePic {
+			:host([dir="rtl"]) .d2l-skeleton-profile-pic {
 				margin-left: 0px;
 				margin-right: 7px;
 			}
-			.skeleton-info {
+			.d2l-skeleton-info {
 				display: flex;
 				flex-direction: column;
 				padding-left: 10px;
 				width: 50%;
 			}
-			:host([dir="rtl"]) .skeleton-info {
+			:host([dir="rtl"]) .d2l-skeleton-info {
 				padding-left: 0px;
 				padding-right: 10px;
 			}
-			.skeleton-name {
+			.d2l-skeleton-name {
 				animation: loadingPulse 1.8s linear infinite;
 				border-radius: 6px;
 				height: 0.8rem;
 				width: 60%;
 			}
-			.skeleton-count {
+			.d2l-skeleton-count {
 				animation: loadingPulse 1.8s linear infinite;
 				border-radius: 4px;
 				height: 0.7rem;
 				margin-top: 4px;
 				width: 40%;
 			}
-			.emptyState {
+			.d2l-empty-state {
 				align-items: center;
 				display: flex;
 				flex-direction: column;
 			}
-			.emptyImage {
+			.d2l-empty-image {
 				max-width: 100%;
 				width: 255px;
 			}
@@ -161,11 +161,11 @@ class App extends BaseMixin(LitElement) {
 
 	firstUpdated() {
 		this._getLeaderboard();
-		this.addEventListener('award-issued-dialog', this._openDialog);
+		this.addEventListener('d2l-award-issued-dialog', this._openDialog);
 	}
 
 	render() {
-		const dialog = html`<award-details id="awarddetails"></award-details>`;
+		const dialog = html`<d2l-award-details id="awarddetails"></d2l-award-details>`;
 
 		let listContent;
 		if (!this.doneLoading) {
@@ -173,12 +173,12 @@ class App extends BaseMixin(LitElement) {
 			const itemsSkeleton = html`
 				<d2l-list-item>
 					<d2l-list-item-content>
-						<div class="skeleton-awardRow">
-							<div class="skeleton-awardRank"></div>
-							<div class="skeleton-profilePic"></div>
-							<div class="skeleton-info">
-								<div class="skeleton-name"></div>
-								<div class="skeleton-count"></div>
+						<div class="d2l-skeleton-award-row">
+							<div class="d2l-skeleton-award-rank"></div>
+							<div class="d2l-skeleton-profile-pic"></div>
+							<div class="d2l-skeleton-info">
+								<div class="d2l-skeleton-name"></div>
+								<div class="d2l-skeleton-count"></div>
 							</div>
 						</div>
 					</d2l-list-item-content>
@@ -213,23 +213,23 @@ class App extends BaseMixin(LitElement) {
 			isMyAward = true;
 		}
 		return html`
-			<d2l-list-item class="${ isMyAward ? 'myAwardItem' : '' }">
-				<leaderboard-row
-					?myAward=${isMyAward}
+			<d2l-list-item class="${ isMyAward ? 'd2l-my-award-item' : '' }">
+				<d2l-leaderboard-row
+					?my-award=${isMyAward}
 					.userData=${item}
-					?sortByCreditsConfig=${this.sortByCreditsConfig}
+					?sort-by-credits-config=${this.sortByCreditsConfig}
 					?mobile="${this.mobile}"
 					?full="${this.full}"
-					maxBadges="${this.maxBadges}">
-				</leaderboard-row>
+					max-badges="${this.maxBadges}">
+				</d2l-leaderboard-row>
 			</d2l-list-item>
 		`;
 	}
 
 	_displayEmptyLeaderboard() {
 		return html`
-			<div class="emptyState">
-				<img src="${this.emptyImage}" class="emptyImage" alt="" />
+			<div class="d2l-empty-state">
+				<img src="${this.emptyImage}" class="d2l-empty-image" alt="" />
 				<div class="d2l-heading-2">${this.localize('emptyHeading')}</div>
 				<div class="d2l-body-standard">${this.localize('emptyBody')}</div>
 			</div>

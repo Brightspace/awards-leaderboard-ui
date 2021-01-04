@@ -32,8 +32,8 @@
 					"CreatedBy": 169,
 					"IsDeleted": false,
 					"ImageData": {
-						"Name": "profile-6.jpg",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=81"
+						"Name": "handshake.png",
+						"Path": "../demo/images/54.png"
 					},
 					"CertificateData": null,
 					"Title": "This is Christine's Badge that has a bunch of text in the title for testing purposes.",
@@ -83,7 +83,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Hand_Out.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=53"
+						"Path": "../demo/images/53.png"
 					},
 					"CertificateData": null,
 					"Title": "Take a hand",
@@ -133,7 +133,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Grad_Hat.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=52"
+						"Path": "../demo/images/52.png"
 					},
 					"CertificateData": null,
 					"Title": "Administrator or Moderator",
@@ -183,7 +183,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Globe.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=51"
+						"Path": "../demo/images/51.png"
 					},
 					"CertificateData": null,
 					"Title": "Earth Worker",
@@ -233,7 +233,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Flask_Liquid.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=50"
+						"Path": "../demo/images/50.png"
 					},
 					"CertificateData": null,
 					"Title": "Future Scientist",
@@ -283,7 +283,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Discussion_Crown.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=49"
+						"Path": "../demo/images/49.png"
 					},
 					"CertificateData": null,
 					"Title": "King Conversationalist",
@@ -333,7 +333,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Discussion.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=48"
+						"Path": "../demo/images/48.png"
 					},
 					"CertificateData": null,
 					"Title": "Talking with people",
@@ -383,7 +383,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Calculator.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=47"
+						"Path": "../demo/images/47.png"
 					},
 					"CertificateData": null,
 					"Title": "Master Calculator",
@@ -433,7 +433,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Book_Mark.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=46"
+						"Path": "../demo/images/46.png"
 					},
 					"CertificateData": null,
 					"Title": "Bookworm",
@@ -483,7 +483,7 @@
 					"IsDeleted": false,
 					"ImageData": {
 						"Name": "Badge_Book.png",
-						"Path": "http://klx0-cbelan.desire2learn.d2l:44444/d2l/awards/v1/image/6606?imageId=45"
+						"Path": "../demo/images/45.png"
 					},
 					"CertificateData": null,
 					"Title": "Read a book",

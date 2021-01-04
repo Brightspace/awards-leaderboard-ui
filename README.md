@@ -16,7 +16,7 @@ Options for getting started:
 
 To run this solution, you will need BSI
 * Clone the repo `git clone https://github.com/Brightspace/brightspace-integration.git`
-* Build BSI https://github.com/Brightspace/brightspace-integration#building
+* Build BSI https://github.com/Brightspace/brightspace-integration#building--running-a-local-bsi
 * Link BSI to your local web component for `d2l-awards-leaderboard-ui` (from name in package.json) https://github.com/Brightspace/brightspace-integration#running-locally-with-a-local-web-component
 * (*Recommended*) Unbundle your build so that the UI will update with changes made to code https://github.com/Brightspace/brightspace-integration#using-the-script-to-unbundle-your-build
 

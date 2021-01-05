@@ -63,6 +63,9 @@ class App extends BaseMixin(LitElement) {
 				overflow: hidden;
 				overflow-y: auto;
 			}
+			d2l-list-item-content {
+				width: 100%;
+			}
 			d2l-resize-aware {
 				width: 100%;
 			}

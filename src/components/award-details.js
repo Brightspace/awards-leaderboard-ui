@@ -45,23 +45,23 @@ class AwardDetails extends BaseMixin(LitElement) {
 			bodyStandardStyles,
 			labelStyles,
 			css`
-			.awardDetailsRow {
+			.d2l-award-details-row {
 				display: flex;
 				flex-direction: row;
 			}
-			.awardImage {
+			.d2l-award-image {
 				overflow: auto;
 				max-width: 85px;
 				width: 20%;
 			}
-			.awardImage img{
+			.d2l-award-image img{
 				width: 100%;
 			}
-			.awardDescription {
+			.d2l-award-description {
 				max-width: 70%;
 				margin-left: 1rem;
 			}
-			:host([dir="rtl"]) .awardDescription {
+			:host([dir="rtl"]) .d2l-award-description {
 				margin-left: 0;
 				margin-right: 1rem;
 			}
@@ -123,11 +123,11 @@ class AwardDetails extends BaseMixin(LitElement) {
 			`;
 
 		return html`
-			<div class="awardDetailsRow">
-				<div class="awardImage">
+			<div class="d2l-award-details-row">
+				<div class="d2l-award-image">
 					<img src="${this.awardImage}" alt="${this.awardTitle}" />
 				</div>
-				<div class="awardDescription">
+				<div class="d2l-award-description">
 					<div class="d2l-label-text">${this.localize('label.description')}</div>
 					<div class="d2l-body-compact">${this.awardDescription}</div>
 
@@ -150,4 +150,4 @@ class AwardDetails extends BaseMixin(LitElement) {
 
 }
 
-window.customElements.define('award-details', AwardDetails);
+window.customElements.define('d2l-award-details', AwardDetails);

@@ -29,10 +29,10 @@ class AwardIssued extends BaseMixin(LitElement) {
 	static get styles() {
 		return [
 			css`
-			.awardBtn:hover, .awardBtn:focus-within {
+			.d2l-award-button:hover, .d2l-award-button:focus-within {
 				cursor: pointer;
 			}
-			.awardBtn {
+			.d2l-award-button {
 				background-color: transparent;
 				background-size: ${unsafeCSS(BadgeImageSize)}px;
 				border: 0px;
@@ -43,7 +43,7 @@ class AwardIssued extends BaseMixin(LitElement) {
 				vertical-align: middle;
 				width: ${unsafeCSS(BadgeImageSize)}px;
 			}
-			:host([dir="rtl"]) .awardBtn {
+			:host([dir="rtl"]) .d2l-award-button {
 				margin-left: 3px;
 				margin-right: 0px;
 				text-decoration: none;
@@ -71,7 +71,7 @@ class AwardIssued extends BaseMixin(LitElement) {
 				id="${badgeId}"
 				style="background-image:url(${this.award.Award.ImageData.Path})"
 				@click="${this._awardClick}"
-				class="awardBtn"
+				class="d2l-award-button"
 				aria-labelledby="${tooltipId}"
 			>
 			</button>
@@ -80,7 +80,7 @@ class AwardIssued extends BaseMixin(LitElement) {
 	}
 
 	_awardClick() {
-		const event = new CustomEvent('award-issued-dialog', {
+		const event = new CustomEvent('d2l-award-issued-dialog', {
 			bubbles: true,
 			composed: true,
 			detail: {
@@ -98,4 +98,4 @@ class AwardIssued extends BaseMixin(LitElement) {
 	}
 }
 
-window.customElements.define('award-issued', AwardIssued);
+window.customElements.define('d2l-award-issued', AwardIssued);

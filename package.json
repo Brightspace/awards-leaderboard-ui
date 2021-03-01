@@ -34,7 +34,7 @@
     "deepmerge": "^4",
     "es-dev-server": "^2",
     "eslint": "^7",
-    "eslint-config-brightspace": "^0.12.0",
+    "eslint-config-brightspace": "^0.13.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-html": "^6",
     "eslint-plugin-json": "^2",
